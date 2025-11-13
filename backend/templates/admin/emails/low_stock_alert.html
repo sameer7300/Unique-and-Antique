@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Low Stock Alert - Unique & Antique</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8fafc;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .content {
+            padding: 30px;
+        }
+        .alert-box {
+            background: #fef2f2;
+            border-left: 4px solid #ef4444;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .product-item {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .product-info {
+            flex: 1;
+        }
+        .product-title {
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 5px;
+        }
+        .product-sku {
+            font-size: 12px;
+            color: #6b7280;
+        }
+        .stock-level {
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .stock-critical {
+            background: #fef2f2;
+            color: #dc2626;
+        }
+        .stock-low {
+            background: #fef3c7;
+            color: #d97706;
+        }
+        .action-button {
+            background: linear-gradient(135deg, #10B981, #059669);
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            display: inline-block;
+            margin: 20px 0;
+        }
+        .footer {
+            background: #f9fafb;
+            padding: 20px;
+            text-align: center;
+            color: #6b7280;
+            font-size: 14px;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .stat-card {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #059669;
+        }
+        .stat-label {
+            font-size: 12px;
+            color: #065f46;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚨 Low Stock Alert</h1>
+            <p style="margin: 10px 0 0 0; opacity: 0.9;">
+                Your store needs attention - some products are running low!
+            </p>
+        </div>
+        
+        <div class="content">
+            <div class="alert-box">
+                <h3 style="margin: 0 0 10px 0; color: #dc2626;">⚠️ Immediate Action Required</h3>
+                <p style="margin: 0;">
+                    We found <strong>{{ total_count }}</strong> products with low stock levels. 
+                    {% if out_of_stock_count > 0 %}
+                    <strong>{{ out_of_stock_count }}</strong> products are completely out of stock and have been automatically hidden from customers.
+                    {% endif %}
+                </p>
+            </div>
+            
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number">{{ total_count }}</div>
+                    <div class="stat-label">Products Need Restocking</div>
+                </div>
+                <div class="stat-card" style="background: #fef2f2; border-color: #fecaca;">
+                    <div class="stat-number" style="color: #dc2626;">{{ out_of_stock_count }}</div>
+                    <div class="stat-label" style="color: #991b1b;">Out of Stock</div>
+                </div>
+            </div>
+            
+            <h3 style="color: #1f2937; margin: 30px 0 15px 0;">📦 Products That Need Your Attention:</h3>
+            
+            {% for product in low_stock_products %}
+            <div class="product-item">
+                <div class="product-info">
+                    <div class="product-title">{{ product.title }}</div>
+                    <div class="product-sku">SKU: {{ product.sku }}</div>
+                </div>
+                <div class="stock-level {% if product.stock == 0 %}stock-critical{% else %}stock-low{% endif %}">
+                    {% if product.stock == 0 %}
+                        🔴 OUT OF STOCK
+                    {% else %}
+                        🟡 {{ product.stock }} left
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+            
+            <div style="text-align: center; margin: 30px 0;">
+                <a href="{{ admin_url }}/products/product/" class="action-button">
+                    🛠️ Manage Inventory Now
+                </a>
+            </div>
+            
+            <div style="background: #fffbeb; border: 1px solid #fde68a; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                <h4 style="margin: 0 0 10px 0; color: #92400e;">💡 Quick Tips:</h4>
+                <ul style="margin: 0; color: #92400e;">
+                    <li>Update stock levels immediately to avoid losing sales</li>
+                    <li>Consider featuring products with good stock levels</li>
+                    <li>Set up automatic reorder points for popular items</li>
+                    <li>Contact suppliers for quick restocking of bestsellers</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>This is an automated alert from your Unique & Antique store management system.</p>
+            <p>Need help? Contact support at <a href="mailto:support@uniqueantique.com">support@uniqueantique.com</a></p>
+        </div>
+    </div>
+</body>
+</html>

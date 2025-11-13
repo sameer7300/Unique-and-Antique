@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Return Request Received - {{ order_return.return_number }}</title>
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #374151;
+            margin: 0;
+            padding: 0;
+            background-color: #f9fafb;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+        }
+        .header p {
+            margin: 10px 0 0 0;
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 40px 30px;
+        }
+        .return-info {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .return-info h2 {
+            margin: 0 0 15px 0;
+            color: #92400e;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        .return-number {
+            display: inline-block;
+            background-color: #92400e;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 15px;
+            font-family: 'Monaco', 'Menlo', monospace;
+        }
+        .details-section {
+            background-color: #f9fafb;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+        }
+        .detail-label {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #6b7280;
+            margin-bottom: 4px;
+        }
+        .detail-value {
+            font-size: 16px;
+            font-weight: 500;
+            color: #111827;
+        }
+        .return-items {
+            margin-bottom: 30px;
+        }
+        .return-items h3 {
+            margin: 0 0 20px 0;
+            color: #111827;
+            font-size: 18px;
+            font-weight: 600;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 10px;
+        }
+        .return-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        .return-item:last-child {
+            border-bottom: none;
+        }
+        .item-info {
+            flex: 1;
+        }
+        .item-name {
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 4px;
+        }
+        .item-details {
+            font-size: 14px;
+            color: #6b7280;
+        }
+        .next-steps {
+            background-color: #f0f9ff;
+            border: 1px solid #bae6fd;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        .next-steps h3 {
+            margin: 0 0 15px 0;
+            color: #0369a1;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        .next-steps ul {
+            margin: 0;
+            padding-left: 20px;
+            color: #0369a1;
+        }
+        .next-steps li {
+            margin-bottom: 8px;
+        }
+        .footer {
+            background-color: #f3f4f6;
+            padding: 30px;
+            text-align: center;
+            color: #6b7280;
+        }
+        .footer p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+        .footer a {
+            color: #f59e0b;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 600px) {
+            .container {
+                margin: 0;
+                border-radius: 0;
+            }
+            .header, .content, .footer {
+                padding: 20px;
+            }
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>{{ company_name }}</h1>
+            <p>Return Request Received</p>
+        </div>
+        
+        <div class="content">
+            <div class="return-info">
+                <h2>Return Request Confirmed</h2>
+                <div class="return-number">{{ order_return.return_number }}</div>
+                <p>We've received your return request and will process it shortly.</p>
+            </div>
+
+            <div class="details-section">
+                <div class="details-grid">
+                    <div class="detail-item">
+                        <div class="detail-label">Return Number</div>
+                        <div class="detail-value">{{ order_return.return_number }}</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Original Order</div>
+                        <div class="detail-value">{{ order.order_number }}</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Return Reason</div>
+                        <div class="detail-value">{{ reason_display }}</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Request Date</div>
+                        <div class="detail-value">{{ order_return.created_at|date:"F j, Y" }}</div>
+                    </div>
+                </div>
+            </div>
+
+            {% if return_items %}
+            <div class="return-items">
+                <h3>Items to Return</h3>
+                {% for item in return_items %}
+                <div class="return-item">
+                    <div class="item-info">
+                        <div class="item-name">{{ item.order_item.product_name }}</div>
+                        <div class="item-details">
+                            {% if item.order_item.variant_name %}{{ item.order_item.variant_name }} • {% endif %}
+                            Quantity: {{ item.quantity }} • SKU: {{ item.order_item.product_sku }}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            {% if order_return.customer_notes %}
+            <div class="details-section">
+                <h3>Your Notes</h3>
+                <p>{{ order_return.customer_notes }}</p>
+            </div>
+            {% endif %}
+
+            <div class="next-steps">
+                <h3>What Happens Next?</h3>
+                <ul>
+                    <li>Our team will review your return request within 1-2 business days</li>
+                    <li>You'll receive an email with return instructions and shipping label</li>
+                    <li>Once we receive your items, we'll process the return within 3-5 business days</li>
+                    <li>Refunds will be issued to your original payment method</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p><strong>{{ company_name }}</strong></p>
+            <p>Curating unique and antique treasures for discerning collectors</p>
+            <p>Questions? Contact us at <a href="mailto:{{ support_email }}">{{ support_email }}</a></p>
+            <p>&copy; {{ current_year }} {{ company_name }}. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

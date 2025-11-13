@@ -1,0 +1,39 @@
+{{ company_name }} Admin Notification
+New Order {{ action_type|title }}
+
+ACTION REQUIRED
+===============
+A new order has been {{ action_type }} and requires your attention.
+
+ORDER SUMMARY
+=============
+Order Number: {{ order.order_number }}
+Order Date: {{ order.created_at|date:"F j, Y g:i A" }}
+Total Amount: ₨{{ order.total_amount }}
+Payment Method: {{ order.get_payment_method_display }}
+Order Status: {{ order.get_status_display }}
+Total Items: {{ total_items }} item{{ total_items|pluralize }}
+
+CUSTOMER INFORMATION
+====================
+Name: {{ customer.first_name }} {{ customer.last_name }}
+Email: {{ customer.email }}
+{% if customer.phone %}Phone: {{ customer.phone }}{% endif %}
+Customer Since: {{ customer.date_joined|date:"F Y" }}
+
+ORDER ITEMS
+===========
+{% for item in order_items %}
+{{ item.product_name }}
+{% if item.variant_name %}Variant: {{ item.variant_name }}{% endif %}
+Quantity: {{ item.quantity }} • SKU: {{ item.product_sku }}
+Price: ₨{{ item.total_price }}
+
+{% endfor %}
+
+ADMIN ACTION
+============
+View order in admin panel: {{ admin_url }}
+
+{{ company_name }} Admin Notification System
+This is an automated notification.

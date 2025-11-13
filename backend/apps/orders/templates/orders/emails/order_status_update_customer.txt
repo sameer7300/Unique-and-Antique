@@ -1,0 +1,35 @@
+{{ company_name }}
+Order Status Update
+
+ORDER STATUS UPDATED
+====================
+{{ message }}
+
+Order Number: {{ order.order_number }}
+Order Date: {{ order.created_at|date:"F j, Y" }}
+Previous Status: {{ old_status_display }}
+Current Status: {{ new_status_display }}
+
+{% if new_status == 'shipped' and tracking_number %}
+TRACKING INFORMATION
+====================
+Carrier: {{ carrier|default:"Standard Shipping" }}
+Tracking Number: {{ tracking_number }}
+{% if estimated_delivery %}Estimated Delivery: {{ estimated_delivery|date:"F j, Y" }}{% endif %}
+{% endif %}
+
+{% if estimated_delivery and new_status != 'delivered' and new_status != 'cancelled' %}
+DELIVERY INFORMATION
+====================
+Estimated Delivery: {{ estimated_delivery|date:"F j, Y" }}
+We'll keep you updated as your order progresses!
+{% endif %}
+
+View your order details: {{ order_url }}
+
+{{ company_name }}
+Curating unique and antique treasures for discerning collectors
+
+Questions? Contact us at {{ support_email }}
+
+© {{ current_year }} {{ company_name }}. All rights reserved.

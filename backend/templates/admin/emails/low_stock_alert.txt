@@ -1,0 +1,39 @@
+🚨 LOW STOCK ALERT - Unique & Antique Store
+
+Dear Store Administrator,
+
+Your store needs immediate attention! We found {{ total_count }} products with low stock levels.
+
+{% if out_of_stock_count > 0 %}
+CRITICAL: {{ out_of_stock_count }} products are completely OUT OF STOCK and have been automatically hidden from customers to prevent orders.
+{% endif %}
+
+PRODUCTS THAT NEED RESTOCKING:
+{% for product in low_stock_products %}
+{% if product.stock == 0 %}🔴 OUT OF STOCK: {{ product.title }} (SKU: {{ product.sku }}){% else %}🟡 LOW STOCK: {{ product.title }} - Only {{ product.stock }} left (SKU: {{ product.sku }}){% endif %}
+{% endfor %}
+
+IMMEDIATE ACTIONS NEEDED:
+✅ Update stock levels for all listed products
+✅ Contact suppliers for quick restocking
+✅ Consider promoting products with good stock levels
+✅ Set up reorder alerts for popular items
+
+ACCESS YOUR ADMIN PANEL:
+{{ admin_url }}/products/product/
+
+QUICK TIPS FOR INVENTORY MANAGEMENT:
+• Check stock levels daily to avoid surprises
+• Set low stock thresholds for automatic alerts
+• Keep track of your bestselling items
+• Maintain safety stock for popular products
+• Use the bulk actions to update multiple products quickly
+
+Need help managing your inventory? Our support team is here to assist you!
+
+Contact Support: support@uniqueantique.com
+Admin Panel: {{ admin_url }}
+
+---
+This is an automated alert from your Unique & Antique store management system.
+You're receiving this because you're registered as a store administrator.

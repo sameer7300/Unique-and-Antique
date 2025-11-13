@@ -1,0 +1,29 @@
+{{ company_name }} Admin Notification
+Order Status Change
+
+ORDER STATUS CHANGED
+====================
+Order {{ order.order_number }} status has been updated
+
+{{ old_status_display }} → {{ new_status_display }}
+
+ORDER SUMMARY
+=============
+Order Number: {{ order.order_number }}
+Customer: {{ customer.first_name }} {{ customer.last_name }}
+Order Total: ₨{{ order.total_amount }}
+Order Date: {{ order.created_at|date:"F j, Y" }}
+
+CHANGE DETAILS
+==============
+Changed At: {{ change_time|date:"F j, Y g:i A" }}
+{% if changed_by %}Changed By: {{ changed_by.first_name }} {{ changed_by.last_name }} ({{ changed_by.email }}){% else %}Changed By: System{% endif %}
+Previous Status: {{ old_status_display }}
+New Status: {{ new_status_display }}
+
+ADMIN ACTION
+============
+View order in admin panel: {{ admin_url }}
+
+{{ company_name }} Admin Notification System
+This is an automated notification.

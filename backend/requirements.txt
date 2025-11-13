@@ -1,0 +1,69 @@
+# Core Django
+Django==4.2.7
+djangorestframework==3.14.0
+django-cors-headers==4.3.1
+
+# Database
+psycopg2-binary==2.9.9
+dj-database-url==2.1.0
+
+# Authentication & Security
+djangorestframework-simplejwt==5.3.0
+django-allauth==0.57.0
+cryptography==41.0.7
+pyotp==2.9.0
+qrcode[pil]==7.4.2
+
+# Caching & Background Tasks
+redis==5.0.1
+django-redis==5.4.0
+celery==5.3.4
+
+# File Storage
+django-storages==1.14.2
+boto3==1.34.0
+cloudinary==1.36.0
+django-cloudinary-storage==0.3.0
+Pillow==10.1.0
+
+# API Documentation
+drf-spectacular==0.26.5
+
+# Filtering & Search
+django-filter==23.5
+django-elasticsearch-dsl==7.3.0
+
+# Payment Processing
+stripe==7.8.0
+
+# Development Tools
+django-debug-toolbar==4.2.0
+django-extensions==3.2.3
+
+# Environment Management
+python-decouple==3.8
+
+# Testing
+pytest==7.4.3
+pytest-django==4.7.0
+factory-boy==3.3.0
+coverage==7.3.2
+
+# Code Quality
+black==23.11.0
+isort==5.12.0
+flake8==6.1.0
+
+# Monitoring
+sentry-sdk==1.38.0
+
+# Email
+django-anymail==10.2
+
+# Django Admin Enhancements
+django-jazzmin==2.6.0
+django-admin-interface==0.28.6
+django-colorfield==0.11.0
+django-import-export==3.3.1
+django-admin-rangefilter==0.11.1
+django-nested-admin==4.0.2

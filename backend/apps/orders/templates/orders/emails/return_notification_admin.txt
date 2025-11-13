@@ -1,0 +1,47 @@
+{{ company_name }} Admin Notification
+New Return Request
+
+RETURN REQUEST RECEIVED
+=======================
+A customer has submitted a return request that requires your review and approval.
+
+RETURN SUMMARY
+==============
+Return Number: {{ order_return.return_number }}
+Original Order: {{ order.order_number }}
+Return Reason: {{ reason_display }}
+Request Date: {{ order_return.created_at|date:"F j, Y g:i A" }}
+Order Total: ₨{{ order.total_amount }}
+Return Status: {{ order_return.get_status_display }}
+
+CUSTOMER INFORMATION
+====================
+Name: {{ customer.first_name }} {{ customer.last_name }}
+Email: {{ customer.email }}
+{% if customer.phone %}Phone: {{ customer.phone }}{% endif %}
+Customer Since: {{ customer.date_joined|date:"F Y" }}
+
+{% if return_items %}
+ITEMS TO RETURN
+===============
+{% for item in return_items %}
+{{ item.order_item.product_name }}
+{% if item.order_item.variant_name %}Variant: {{ item.order_item.variant_name }}{% endif %}
+Return Quantity: {{ item.quantity }} • SKU: {{ item.order_item.product_sku }}
+{% if item.condition %}Condition: {{ item.condition }}{% endif %}
+
+{% endfor %}
+{% endif %}
+
+{% if order_return.customer_notes %}
+CUSTOMER NOTES
+==============
+{{ order_return.customer_notes }}
+{% endif %}
+
+ADMIN ACTION
+============
+Review return request: {{ admin_url }}
+
+{{ company_name }} Admin Notification System
+This is an automated notification.

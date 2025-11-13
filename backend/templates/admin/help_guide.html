@@ -1,0 +1,235 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block extrahead %}
+{{ block.super }}
+<style>
+.help-section {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border-left: 4px solid #10B981;
+}
+
+.help-item {
+    background: #f8fafc;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border-left: 3px solid #10B981;
+}
+
+.step-number {
+    background: #10B981;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-right: 15px;
+}
+
+.video-placeholder {
+    background: #f3f4f6;
+    border: 2px dashed #d1d5db;
+    border-radius: 8px;
+    padding: 40px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.quick-link {
+    display: inline-block;
+    background: #10B981;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    margin: 5px;
+    font-weight: bold;
+}
+
+.quick-link:hover {
+    background: #059669;
+    color: white;
+    text-decoration: none;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="help-guide">
+    <h1 style="color: #10B981; margin-bottom: 30px;">
+        📚 Quick Help Guide - Store Management Made Easy!
+    </h1>
+    
+    <div style="background: linear-gradient(135deg, #eff6ff, #dbeafe); padding: 20px; border-radius: 12px; margin-bottom: 30px;">
+        <h3 style="color: #1e40af; margin-bottom: 15px;">🎯 Welcome to Your Admin Panel!</h3>
+        <p style="color: #1e40af; margin-bottom: 15px;">
+            This guide will help you manage your online store like a pro. Don't worry if you're not technical - 
+            we've made everything simple and user-friendly!
+        </p>
+        <div>
+            <a href="/admin/" class="quick-link">🏠 Back to Dashboard</a>
+            <a href="/admin/products/product/add/" class="quick-link">➕ Add Your First Product</a>
+            <a href="/admin/orders/order/" class="quick-link">📦 View Orders</a>
+        </div>
+    </div>
+
+    {% for section in help_sections %}
+    <div class="help-section">
+        <h2 style="color: #374151; margin-bottom: 20px;">{{ section.title }}</h2>
+        
+        {% for item in section.items %}
+        <div class="help-item">
+            <div style="display: flex; align-items: flex-start;">
+                <span class="step-number">{{ forloop.counter }}</span>
+                <div>
+                    <p style="margin: 0; font-size: 1rem; line-height: 1.6;">{{ item }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+
+    <!-- Video Tutorials Section -->
+    <div class="help-section">
+        <h2 style="color: #374151; margin-bottom: 20px;">🎥 Video Tutorials</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+            <div class="video-placeholder">
+                <h4 style="color: #6b7280; margin-bottom: 10px;">📦 Adding Your First Product</h4>
+                <p style="color: #9ca3af; margin-bottom: 15px;">Learn how to add products step-by-step</p>
+                <button style="background: #10B981; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer;">
+                    ▶️ Watch Tutorial (Coming Soon)
+                </button>
+            </div>
+            
+            <div class="video-placeholder">
+                <h4 style="color: #6b7280; margin-bottom: 10px;">🛒 Managing Orders</h4>
+                <p style="color: #9ca3af; margin-bottom: 15px;">Process orders and update customers</p>
+                <button style="background: #10B981; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer;">
+                    ▶️ Watch Tutorial (Coming Soon)
+                </button>
+            </div>
+            
+            <div class="video-placeholder">
+                <h4 style="color: #6b7280; margin-bottom: 10px;">📊 Understanding Reports</h4>
+                <p style="color: #9ca3af; margin-bottom: 15px;">Track your business performance</p>
+                <button style="background: #10B981; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer;">
+                    ▶️ Watch Tutorial (Coming Soon)
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Common Tasks Section -->
+    <div class="help-section">
+        <h2 style="color: #374151; margin-bottom: 20px;">⚡ Common Daily Tasks</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+            <div style="background: #f0fdf4; padding: 20px; border-radius: 8px; border-left: 4px solid #10B981;">
+                <h4 style="color: #059669; margin-bottom: 10px;">Morning Routine</h4>
+                <ul style="color: #065f46; margin: 0; padding-left: 20px;">
+                    <li>Check new orders</li>
+                    <li>Review low stock alerts</li>
+                    <li>Respond to customer messages</li>
+                    <li>Update order statuses</li>
+                </ul>
+            </div>
+            
+            <div style="background: #eff6ff; padding: 20px; border-radius: 8px; border-left: 4px solid #3b82f6;">
+                <h4 style="color: #2563eb; margin-bottom: 10px;">Weekly Tasks</h4>
+                <ul style="color: #1e40af; margin: 0; padding-left: 20px;">
+                    <li>Add new products</li>
+                    <li>Review sales reports</li>
+                    <li>Update product descriptions</li>
+                    <li>Check competitor prices</li>
+                </ul>
+            </div>
+            
+            <div style="background: #fef3c7; padding: 20px; border-radius: 8px; border-left: 4px solid #f59e0b;">
+                <h4 style="color: #d97706; margin-bottom: 10px;">Monthly Review</h4>
+                <ul style="color: #92400e; margin: 0; padding-left: 20px;">
+                    <li>Analyze best-selling products</li>
+                    <li>Review customer feedback</li>
+                    <li>Plan new product launches</li>
+                    <li>Update marketing strategies</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Troubleshooting Section -->
+    <div class="help-section">
+        <h2 style="color: #374151; margin-bottom: 20px;">🔧 Common Questions & Solutions</h2>
+        
+        <div style="display: grid; gap: 15px;">
+            <details style="background: #f9fafb; padding: 15px; border-radius: 8px; border: 1px solid #e5e7eb;">
+                <summary style="font-weight: bold; color: #374151; cursor: pointer; margin-bottom: 10px;">
+                    ❓ How do I make a product visible to customers?
+                </summary>
+                <p style="color: #6b7280; margin: 10px 0 0 0;">
+                    Go to the product page and make sure the "Status" is set to "Active". Also ensure you have uploaded at least one image and set a price.
+                </p>
+            </details>
+            
+            <details style="background: #f9fafb; padding: 15px; border-radius: 8px; border: 1px solid #e5e7eb;">
+                <summary style="font-weight: bold; color: #374151; cursor: pointer; margin-bottom: 10px;">
+                    ❓ Why can't customers see my new product?
+                </summary>
+                <p style="color: #6b7280; margin: 10px 0 0 0;">
+                    Check that: 1) Product status is "Active", 2) You've added product images, 3) Price is set, 4) Stock quantity is greater than 0 if inventory tracking is enabled.
+                </p>
+            </details>
+            
+            <details style="background: #f9fafb; padding: 15px; border-radius: 8px; border: 1px solid #e5e7eb;">
+                <summary style="font-weight: bold; color: #374151; cursor: pointer; margin-bottom: 10px;">
+                    ❓ How do I process an order?
+                </summary>
+                <p style="color: #6b7280; margin: 10px 0 0 0;">
+                    Go to Orders section, click on the order, update the status from "Pending" to "Processing" when you start preparing it, then to "Shipped" when sent, and finally "Completed" when delivered.
+                </p>
+            </details>
+            
+            <details style="background: #f9fafb; padding: 15px; border-radius: 8px; border: 1px solid #e5e7eb;">
+                <summary style="font-weight: bold; color: #374151; cursor: pointer; margin-bottom: 10px;">
+                    ❓ How do I export my data?
+                </summary>
+                <p style="color: #6b7280; margin: 10px 0 0 0;">
+                    In any list view (Products, Orders, etc.), look for the "Export" button at the top. You can download data as Excel or CSV files for your records.
+                </p>
+            </details>
+        </div>
+    </div>
+
+    <!-- Contact Support -->
+    <div style="background: linear-gradient(135deg, #10B981, #059669); color: white; padding: 25px; border-radius: 12px; text-align: center; margin-top: 30px;">
+        <h3 style="margin-bottom: 15px;">🤝 Still Need Help?</h3>
+        <p style="margin-bottom: 20px; opacity: 0.9;">
+            Our support team is here to help you succeed with your online store!
+        </p>
+        <div>
+            <a href="mailto:support@uniqueantique.com" 
+               style="background: white; color: #059669; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: bold; margin: 0 10px;">
+                📧 Email Support
+            </a>
+            <a href="tel:+92-XXX-XXXXXXX" 
+               style="background: rgba(255,255,255,0.2); color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: bold; margin: 0 10px;">
+                📞 Call Us
+            </a>
+        </div>
+        <p style="margin-top: 20px; font-size: 0.9rem; opacity: 0.8;">
+            Support Hours: Monday - Friday, 9 AM - 6 PM PKT
+        </p>
+    </div>
+</div>
+{% endblock %}

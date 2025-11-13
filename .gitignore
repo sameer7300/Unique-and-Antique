@@ -1,0 +1,139 @@
+# =========================
+# 🌐 FRONTEND (Next.js)
+# =========================
+# Node dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+yarn.lock
+.pnpm-store/
+
+# Build output
+.next/
+out/
+dist/
+.cache/
+coverage/
+
+# Local environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+*.log
+
+# =========================
+# 🐍 BACKEND (Django)
+# =========================
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Django files
+db.sqlite3
+*.sqlite3
+media/
+staticfiles/
+static_root/
+*.pot
+*.pyc
+local_settings.py
+
+# Environment / secrets
+.env
+.env.*
+.venv/
+venv/
+ENV/
+env.bak/
+*.pem
+*.key
+
+# Pytest / coverage
+.coverage
+htmlcov/
+.tox/
+.mypy_cache/
+.pytest_cache/
+pytestdebug.log
+
+# Test fix files
+*test_fix*
+*testfix*
+test_fixes/
+testfixes/
+fix_test*
+fixtest*
+*_test_fix.*
+*_testfix.*
+test_*.fix
+*.test.fix
+debug_test*
+test_debug*
+temp_test*
+test_temp*
+
+# =========================
+# 🚀 DEPLOYMENT / SYSTEM
+# =========================
+# Docker
+Dockerfile
+docker-compose.yml
+*.tar
+*.gz
+
+# Logs
+*.log
+logs/
+*.pid
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# System backups
+*.bak
+*.old
+
+# =========================
+# 🧠 PROJECT CONFIG
+# =========================
+# Ignore compiled static assets
+frontend/.next/
+frontend/out/
+backend/staticfiles/
+
+# Ignore local IDE settings
+*.code-workspace
+*.sublime-project
+*.sublime-workspace
+.idea/
+.vscode/
+
+# =========================
+# ✅ END OF FILE
+# =========================
+react-frontend
+cloudpanel_deployment
+backend.zip
+cloudpanel_setup_commands.txt
+nginx_vhost_optimized.conf
+New Text Document.txt
+fix_logging_settings.py
+CLOUDPANEL_TROUBLESHOOTING.md
+
+
+react-frontend

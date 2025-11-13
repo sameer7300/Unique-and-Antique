@@ -1,0 +1,42 @@
+{{ company_name }}
+Return Request Received
+
+RETURN REQUEST CONFIRMED
+========================
+We've received your return request and will process it shortly.
+
+Return Number: {{ order_return.return_number }}
+Original Order: {{ order.order_number }}
+Return Reason: {{ reason_display }}
+Request Date: {{ order_return.created_at|date:"F j, Y" }}
+
+{% if return_items %}
+ITEMS TO RETURN
+===============
+{% for item in return_items %}
+{{ item.order_item.product_name }}
+{% if item.order_item.variant_name %}Variant: {{ item.order_item.variant_name }}{% endif %}
+Quantity: {{ item.quantity }} • SKU: {{ item.order_item.product_sku }}
+
+{% endfor %}
+{% endif %}
+
+{% if order_return.customer_notes %}
+YOUR NOTES
+==========
+{{ order_return.customer_notes }}
+{% endif %}
+
+WHAT HAPPENS NEXT?
+==================
+• Our team will review your return request within 1-2 business days
+• You'll receive an email with return instructions and shipping label
+• Once we receive your items, we'll process the return within 3-5 business days
+• Refunds will be issued to your original payment method
+
+{{ company_name }}
+Curating unique and antique treasures for discerning collectors
+
+Questions? Contact us at {{ support_email }}
+
+© {{ current_year }} {{ company_name }}. All rights reserved.
